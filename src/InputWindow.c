@@ -239,6 +239,14 @@ void ReloadInputWindow(void* arg, boolean enabled)
 {
     InputWindow* inputWindow = (InputWindow*) arg;
     boolean visable = WindowIsVisable(inputWindow->dpy, inputWindow->window);
+
+    XFreeGC(inputWindow->dpy, inputWindow->window_gc);
+    XFreeGC(inputWindow->dpy, inputWindow->pixmap_gc);
+    XFreeGC(inputWindow->dpy, inputWindow->pixmap2_gc);
+
+    XFreePixmap(inputWindow->dpy, inputWindow->pixmap2);
+    XFreePixmap(inputWindow->dpy, inputWindow->pixmap);
+
     XDestroyWindow(inputWindow->dpy, inputWindow->window);
     XftDrawDestroy(inputWindow->xftDraw);
 

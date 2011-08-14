@@ -102,9 +102,6 @@ void InitMainWindow(MainWindow* mainWindow)
                                   MAIN_BAR_MAX_WIDTH,
                                   MAIN_BAR_MAX_HEIGHT,
                                   depth);
-    gc = XCreateGC(dpy,mainWindow->pm_main_bar, GCForeground, &xgv);
-    XFillRectangle(dpy, mainWindow->pm_main_bar, gc, 0, 0, 100, 100);
-    XFreeGC(dpy,gc);
 
     mainWindow->main_win_gc = XCreateGC( dpy, mainWindow->window, 0, NULL );
     XChangeWindowAttributes (dpy, mainWindow->window, attribmask, &attrib);
