@@ -1,0 +1,8 @@
+[Addon]
+Name=fcitx-light-ui
+_GeneralName=Light UI
+_Comment=Light UI
+Category=UI
+Enabled=False
+Library=fcitx-light-ui.so
+Type=SharedLibrary

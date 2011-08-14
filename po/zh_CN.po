@@ -1,0 +1,150 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# , 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-14 19:37+0800\n"
+"PO-Revision-Date: 2011-07-24 14:53+0800\n"
+"Last-Translator: \n"
+"Language-Team: Chinese Simplified <kde-i18n-doc@kde.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:108
+msgid "Active Menu Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:98
+msgid "Active Menu Item Character Color"
+msgstr ""
+
+#: unknown
+msgid "Auto"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:48
+msgid "Background Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:53
+msgid "Border Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:73
+msgid "Candidate Index Color"
+msgstr ""
+
+#: ../..//data/fcitx-light.desktop.in.h:1
+msgid "Chinese Input Method (Use Light weight UI)"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:118
+msgid "Cursor Color"
+msgstr ""
+
+#: ../..//data/fcitx-light.desktop.in.h:2
+msgid "Fcitx Light UI"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:78
+msgid "First Candidate Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:14
+msgid "Font"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:58
+msgid "Font Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:24
+msgid "Font Locale to display"
+msgstr ""
+
+#: unknown
+msgid "Hide"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:103
+msgid "Inactive Menu Item Character Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:68
+msgid "Input Message Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/build/po/tmp/fcitx-light-ui.conf.in.h:1
+msgid "Light UI"
+msgstr ""
+
+# unknown
+msgid "LightUI"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:38
+msgid "Main Window Hide Mode"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:2
+msgid "Main Window Position X"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:7
+msgid "Main Window Position Y"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:19
+msgid "Menu Font"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:93
+msgid "Other Color"
+msgstr ""
+
+#: unknown
+msgid "Show"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:113
+msgid "Space Line Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:88
+msgid "Table Code Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:63
+msgid "Tip Message Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:29
+msgid "Use System Tray Icon"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:83
+msgid "User Phrase Color"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-light-ui/data/fcitx-light-ui.desc:43
+msgid "Vertical Candidate Word List"
+msgstr ""
+
+#~ msgid "Google Pinyin"
+#~ msgstr "Google 拼音"
+
+#~ msgid "GooglePinyin"
+#~ msgstr "Google 拼音"
+
+#~ msgid "Priority of GooglePinyin"
+#~ msgstr "Google 拼音的优先级"
+
+#~ msgid "Wrapper of Google Pinyin on Android"
+#~ msgstr "Android 上的 Google 拼音的封装"

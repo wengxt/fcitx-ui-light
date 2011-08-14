@@ -1,0 +1,121 @@
+[LightUI/MainWindowOffsetX]
+Description=Main Window Position X
+Type=Integer
+DefaultValue=500
+
+[LightUI/MainWindowOffsetY]
+Description=Main Window Position Y
+Type=Integer
+DefaultValue=40
+
+[LightUI/Font]
+Type=Font
+DefaultValue=
+Description=Font
+
+[LightUI/MenuFont]
+Type=Font
+DefaultValue=
+Description=Menu Font
+
+[LightUI/FontLocale]
+Type=String
+DefaultValue=zh_CN.UTF-8
+Description=Font Locale to display
+
+[LightUI/UseTray]
+Type=Boolean
+DefaultValue=True
+Description=Use System Tray Icon
+
+[LightUI/MainWindowHideMode]
+Type=Enum
+EnumCount=3
+Enum0=Show
+Enum1=Auto
+Enum2=Hide
+DefaultValue=Auto
+Description=Main Window Hide Mode
+
+[LightUI/VerticalList]
+Type=Boolean
+DefaultValue=False
+Description=Vertical Candidate Word List
+
+[LightUI/BackgroundColor]
+Type=Color
+DefaultValue=255 255 255
+Description=Background Color
+
+[LightUI/BorderColor]
+Type=Color
+DefaultValue=127 127 127
+Description=Border Color
+
+[LightUI/FontColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Font Color
+
+[LightUI/TipColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Tip Message Color
+
+[LightUI/InputColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Input Message Color
+
+[LightUI/IndexColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Candidate Index Color
+
+[LightUI/FirstCandColor]
+Type=Color
+DefaultValue=0 0 0
+Description=First Candidate Color
+
+[LightUI/UserPhraseColor]
+Type=Color
+DefaultValue=0 0 0
+Description=User Phrase Color
+
+[LightUI/CodeColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Table Code Color
+
+[LightUI/OtherColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Other Color
+
+[LightUI/ActiveMenuColor]
+Type=Color
+DefaultValue=255 255 255
+Description=Active Menu Item Character Color
+
+[LightUI/InactiveMenuColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Inactive Menu Item Character Color
+
+[LightUI/ActiveColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Active Menu Color
+
+[LightUI/LineColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Space Line Color
+
+[LightUI/CursorColor]
+Type=Color
+DefaultValue=0 0 0
+Description=Cursor Color
+
+[DescriptionFile]
+LocaleDomain=fcitx-light-ui
