@@ -54,6 +54,7 @@ typedef struct _XlibMenu
     XColor charselectcolor;
     struct _FcitxUIMenu *menushell;
     struct _FcitxLightUI* owner;
+    XftDraw* xftDraw;
 } XlibMenu;
 
 XlibMenu* CreateMainMenuWindow(struct _FcitxLightUI *lightui);

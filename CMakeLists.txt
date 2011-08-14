@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 2.6)
 FIND_PACKAGE(Gettext REQUIRED)
 FIND_PACKAGE(Fcitx4 REQUIRED)
 FIND_PACKAGE(X11 REQUIRED)
+FIND_PACKAGE(PkgConfig REQUIRED)
+
+pkg_check_modules(FONTCONFIG "fontconfig")
+pkg_check_modules(FREETYPE2 "freetype2")
 
 # uninstall target
 configure_file(

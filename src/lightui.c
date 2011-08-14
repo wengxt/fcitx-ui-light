@@ -44,6 +44,7 @@
 #include "MessageWindow.h"
 #include "fcitx/hook.h"
 #include <fcitx-utils/utils.h>
+#include "font.h"
 
 struct _FcitxSkin;
 boolean MainMenuAction(FcitxUIMenu* menu, int index);
@@ -101,8 +102,8 @@ void* LightUICreate(FcitxInstance* instance)
         return NULL;
     }
 
-    CreateFont(lightui);
     lightui->iScreen = DefaultScreen(lightui->dpy);
+    CreateFont(lightui);
 
     lightui->protocolAtom = XInternAtom (lightui->dpy, "WM_PROTOCOLS", False);
     lightui->killAtom = XInternAtom (lightui->dpy, "WM_DELETE_WINDOW", False);
@@ -295,12 +296,6 @@ void SaveLightUIConfig(FcitxLightUI *lightui)
         fclose(fp);
 }
 
-Visual * FindARGBVisual (FcitxLightUI* lightui)
-{
-    FcitxModuleFunctionArg arg;
-    return InvokeFunction(lightui->owner, FCITX_X11, FINDARGBVISUAL, arg);
-}
-
 boolean IsInRspArea(int x0, int y0, FcitxLightUIStatus* status)
 {
     return IsInBox(x0, y0, status->x, status->y, status->w, status->h);
@@ -435,6 +430,8 @@ void ReloadConfigLightUI(void* arg)
 {
     FcitxLightUI* lightui = (FcitxLightUI*) arg;
     LoadLightUIConfig(lightui);
+
+    CreateFont(lightui);
 }
 
 boolean WindowIsVisable(Display* dpy, Window window)

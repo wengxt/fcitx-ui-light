@@ -81,7 +81,7 @@ void InitMainWindow(MainWindow* mainWindow)
 
     GetScreenSize(lightui, &swidth, &sheight);
 
-    vs = LightUIFindARGBVisual(lightui);
+    vs= NULL;
 
     LightUIInitWindowAttribute(lightui, &vs, &cmap, &attrib, &attribmask, &depth);
     mainWindow->window=XCreateWindow (dpy,

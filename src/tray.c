@@ -171,44 +171,7 @@ void TraySendOpcode(Display* dpy, Window dock, TrayWindow* tray,
 
 XVisualInfo* TrayGetVisual(Display* dpy, TrayWindow* tray)
 {
-    if (tray->visual.visual)
-    {
-        return &tray->visual;
-    }
-
-    tray->dockWindow = XGetSelectionOwner(dpy, tray->atoms[ATOM_SELECTION]);
-
-    if (tray->dockWindow != None) {
-        Atom actual_type;
-        int actual_format;
-        unsigned long nitems, bytes_remaining;
-        unsigned char *data = 0;
-        int result = XGetWindowProperty(dpy, tray->dockWindow, tray->atoms[ATOM_VISUAL], 0, 1,
-                                        False, XA_VISUALID, &actual_type,
-                                        &actual_format, &nitems, &bytes_remaining, &data);
-        VisualID vid = 0;
-        if (result == Success && data && actual_type == XA_VISUALID && actual_format == 32 &&
-                nitems == 1 && bytes_remaining == 0)
-            vid = *(VisualID*)data;
-        if (data)
-            XFree(data);
-        if (vid == 0)
-            return 0;
-
-        uint mask = VisualIDMask;
-        XVisualInfo *vi, rvi;
-        int count;
-        rvi.visualid = vid;
-        vi = XGetVisualInfo(dpy, mask, &rvi, &count);
-        if (vi) {
-            tray->visual = vi[0];
-            XFree((char*)vi);
-        }
-        if (tray->visual.depth != 32)
-            memset(&tray->visual, 0, sizeof(XVisualInfo));
-    }
-
-    return tray->visual.visual ? &tray->visual : 0;
+    return NULL;
 
 }
 
@@ -218,4 +181,4 @@ Window TrayGetDock(Display* dpy, TrayWindow* tray)
     return dock;
 }
 
-// kate: indent-mode cstyle; space-indent on; indent-width 0; 
+// kate: indent-mode cstyle; space-indent on; indent-width 0;

@@ -32,6 +32,7 @@
 #include <X11/Xlib.h>
 
 #include "fcitx/fcitx.h"
+#include <X11/Xft/Xft.h>
 
 #define ROUND_SIZE 80
 #define INPUTWND_WIDTH	50
@@ -65,6 +66,7 @@ typedef struct _InputWindow {
     GC window_gc;
     GC pixmap2_gc;
     GC pixmap_gc;
+    XftDraw* xftDraw;
 } InputWindow;
 
 InputWindow* CreateInputWindow(struct _FcitxLightUI* lightui);

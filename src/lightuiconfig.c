@@ -9,7 +9,6 @@ CONFIG_BINDING_BEGIN(FcitxLightUI)
 CONFIG_BINDING_REGISTER_WITH_FILTER("LightUI", "MainWindowOffsetX", iMainWindowOffsetX, FilterScreenSizeX)
 CONFIG_BINDING_REGISTER_WITH_FILTER("LightUI", "MainWindowOffsetY", iMainWindowOffsetY, FilterScreenSizeY)
 CONFIG_BINDING_REGISTER("LightUI", "Font", font)
-CONFIG_BINDING_REGISTER("LightUI", "MenuFont", menuFont)
 #ifndef _ENABLE_PANGO
 CONFIG_BINDING_REGISTER("LightUI", "FontLocale", strUserLocale)
 #endif
@@ -17,6 +16,7 @@ CONFIG_BINDING_REGISTER_WITH_FILTER("LightUI", "UseTray", bUseTrayIcon_, FilterC
 CONFIG_BINDING_REGISTER("LightUI", "SkinType", skinType)
 CONFIG_BINDING_REGISTER("LightUI", "MainWindowHideMode", hideMainWindow)
 CONFIG_BINDING_REGISTER("LightUI", "VerticalList", bVerticalList)
+CONFIG_BINDING_REGISTER("LightUI", "FontSize", fontSize)
 CONFIG_BINDING_REGISTER("LightUI", "BackgroundColor", backcolor)
 CONFIG_BINDING_REGISTER("LightUI", "BorderColor", bordercolor)
 

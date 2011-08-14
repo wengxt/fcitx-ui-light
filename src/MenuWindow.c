@@ -39,7 +39,7 @@
 #define MenuMarginRight 1
 #define MenuMarginLeft 1
 #define MenuMarginBottom 1
-#define MenuFontSize FontHeight(menu->owner->fontset)
+#define MenuFontSize FontHeight(menu->owner->dpy, menu->owner->xftfont)
 
 static boolean ReverseColor(XlibMenu * Menu,int shellIndex);
 static void MenuMark(XlibMenu* menu, int y, int i);
@@ -72,7 +72,7 @@ void InitXlibMenu(XlibMenu* menu)
     Display* dpy = lightui->dpy;
     int iScreen = lightui->iScreen;
 
-    vs=LightUIFindARGBVisual (lightui);
+    vs= NULL;
     LightUIInitWindowAttribute(lightui, &vs, &cmap, &attrib, &attribmask, &depth);
 
     //开始只创建一个简单的窗口不做任何动作
@@ -94,17 +94,7 @@ void InitXlibMenu(XlibMenu* menu)
                                  MENU_WINDOW_HEIGHT,
                                  depth);
 
-    xgv.foreground = WhitePixel(dpy, iScreen);
-    gc = XCreateGC(dpy, menu->pixmap, GCForeground, &xgv);
-    XFillRectangle(
-        dpy,
-        menu->pixmap,
-        gc,
-        0,
-        0,
-        MENU_WINDOW_WIDTH,
-        MENU_WINDOW_HEIGHT);
-    XFreeGC(dpy, gc);
+    menu->xftDraw = XftDrawCreate(dpy, menu->pixmap, DefaultVisual (dpy, DefaultScreen (dpy)), DefaultColormap (dpy, DefaultScreen (dpy)));
 
     XSelectInput (dpy, menu->menuWindow, KeyPressMask | ExposureMask | ButtonPressMask | ButtonReleaseMask  | PointerMotionMask | LeaveWindowMask | StructureNotifyMask );
 
@@ -314,7 +304,7 @@ void GetMenuSize(XlibMenu * menu)
         else if ( GetMenuShell(menu->menushell, i)->type == MENUTYPE_DIVLINE)
             winheight += 5;
 
-        int width = StringWidth(GetMenuShell(menu->menushell, i)->tipstr, menu->owner->fontset);
+        int width = StringWidth(menu->owner->dpy, menu->owner->xftfont, GetMenuShell(menu->menushell, i)->tipstr);
         if (width > menuwidth)
             menuwidth = width;
     }
@@ -402,9 +392,7 @@ void DisplayText(XlibMenu * menu,int shellindex,int line_y)
 
     if (GetMenuShell(menu->menushell, shellindex)->isselect ==0)
     {
-        GC gc = LightUICreateGC(menu->owner->dpy, menu->pixmap, menu->owner->menuFontColor[MENU_INACTIVE]);
-        OutputString(menu->owner->dpy, menu->pixmap, menu->owner->fontset, GetMenuShell(menu->menushell, shellindex)->tipstr , 15 + marginLeft ,line_y, gc);
-        XFreeGC(menu->owner->dpy, gc);
+        OutputString(menu->owner->dpy, menu->xftDraw, menu->pixmap, menu->owner->xftfont, GetMenuShell(menu->menushell, shellindex)->tipstr , 15 + marginLeft ,line_y, menu->owner->menuFontColor[MENU_INACTIVE]);
     }
     else
     {
@@ -412,9 +400,7 @@ void DisplayText(XlibMenu * menu,int shellindex,int line_y)
         XFillRectangle(menu->owner->dpy, menu->pixmap, gc, marginLeft ,line_y, menu->width - marginRight - marginLeft, MenuFontSize+4);
         XFreeGC(menu->owner->dpy, gc);
 
-        gc = LightUICreateGC(menu->owner->dpy, menu->pixmap, menu->owner->menuFontColor[MENU_ACTIVE]);
-        OutputString(menu->owner->dpy, menu->pixmap, menu->owner->fontset, GetMenuShell(menu->menushell, shellindex)->tipstr , 15 + marginLeft ,line_y, gc);
-        XFreeGC(menu->owner->dpy, gc);
+        OutputString(menu->owner->dpy, menu->xftDraw, menu->pixmap, menu->owner->xftfont, GetMenuShell(menu->menushell, shellindex)->tipstr , 15 + marginLeft ,line_y, menu->owner->menuFontColor[MENU_ACTIVE]);
     }
 }
 
@@ -493,6 +479,7 @@ void ReloadXlibMenu(void* arg, boolean enabled)
     boolean visable = WindowIsVisable(menu->owner->dpy, menu->menuWindow);
     XFreePixmap(menu->owner->dpy, menu->pixmap);
     XDestroyWindow(menu->owner->dpy, menu->menuWindow);
+    XftDrawDestroy(menu->xftDraw);
 
     menu->pixmap = None;
     menu->menuWindow = None;

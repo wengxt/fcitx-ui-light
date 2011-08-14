@@ -35,10 +35,11 @@
 
 #include "skin.h"
 #include <fcitx/module/x11/x11stuff.h>
+#include <X11/Xft/Xft.h>
 
 #define FCITX_LIGHT_UI_NAME "fcitx-light-ui"
 
-#define _(x) gettext(x)
+#define _(x) dgettext("fcitx-light-ui", (x))
 
 struct _MainWindow;
 struct _AboutWindow;
@@ -68,8 +69,8 @@ typedef struct _FcitxLightUI {
     struct _FcitxInstance *owner;
 
     char* font;
-    char* menuFont;
     char* strUserLocale;
+    int fontSize;
     boolean bUseTrayIcon;
     boolean bUseTrayIcon_;
     HIDE_MAINWINDOW hideMainWindow;
@@ -88,7 +89,7 @@ typedef struct _FcitxLightUI {
     UT_array status;
     struct _XlibMenu* mainMenuWindow;
     FcitxUIMenu mainMenu;
-    XFontSet fontset;
+    XftFont* xftfont;
     LightUIImage* imageTable;
 } FcitxLightUI;
 

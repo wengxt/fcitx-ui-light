@@ -13,11 +13,6 @@ Type=Font
 DefaultValue=
 Description=Font
 
-[LightUI/MenuFont]
-Type=Font
-DefaultValue=
-Description=Menu Font
-
 [LightUI/FontLocale]
 Type=String
 DefaultValue=zh_CN.UTF-8
@@ -41,6 +36,11 @@ Description=Main Window Hide Mode
 Type=Boolean
 DefaultValue=False
 Description=Vertical Candidate Word List
+
+[LightUI/FontSize]
+Type=Integer
+DefaultValue=12
+Description=Font Size
 
 [LightUI/BackgroundColor]
 Type=Color

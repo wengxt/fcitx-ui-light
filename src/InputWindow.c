@@ -65,7 +65,7 @@ void InitInputWindow(InputWindow* inputWindow)
     inputWindow->iScreen = iScreen;
 
     inputWindow->iInputWindowHeight= INPUTWND_HEIGHT;
-    vs=LightUIFindARGBVisual (lightui);
+    vs= NULL;
     LightUIInitWindowAttribute(lightui, &vs, &cmap, &attrib, &attribmask, &depth);
 
     inputWindow->window=XCreateWindow (dpy,
@@ -94,6 +94,7 @@ void InitInputWindow(InputWindow* inputWindow)
     inputWindow->window_gc = XCreateGC(inputWindow->dpy, inputWindow->window, 0, &gcvalues);
     inputWindow->pixmap_gc = XCreateGC(inputWindow->dpy, inputWindow->pixmap, 0, &gcvalues);
     inputWindow->pixmap2_gc = XCreateGC(inputWindow->dpy, inputWindow->pixmap2, 0, &gcvalues);
+    inputWindow->xftDraw = XftDrawCreate(inputWindow->dpy, inputWindow->pixmap, DefaultVisual (dpy, DefaultScreen (dpy)), DefaultColormap (dpy, DefaultScreen (dpy)));
 
     XSelectInput (dpy, inputWindow->window, ButtonPressMask | ButtonReleaseMask  | PointerMotionMask | ExposureMask);
 
@@ -239,6 +240,7 @@ void ReloadInputWindow(void* arg, boolean enabled)
     InputWindow* inputWindow = (InputWindow*) arg;
     boolean visable = WindowIsVisable(inputWindow->dpy, inputWindow->window);
     XDestroyWindow(inputWindow->dpy, inputWindow->window);
+    XftDrawDestroy(inputWindow->xftDraw);
 
     inputWindow->window = None;
 

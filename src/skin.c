@@ -93,7 +93,7 @@
 #define MarginLeft 4
 #define MarginBottom 4
 #define MarginRight 4
-#define FONTHEIGHT FontHeight(inputWindow->owner->fontset)
+#define FONTHEIGHT FontHeight(inputWindow->dpy, inputWindow->owner->xftfont)
 #define InputPos (fontSize)
 #define OutputPos (fontSize * 2 + 8)
 
@@ -183,7 +183,7 @@ void DrawInputBar(InputWindow* inputWindow, int iCursorPos, Messages * msgup, Me
         return;
 
     inputWidth = 0;
-    strHeight = FontHeight(inputWindow->owner->fontset);
+    strHeight = FONTHEIGHT;
 
     for (i = 0; i < GetMessageCount(msgup) ; i++)
     {
@@ -194,7 +194,7 @@ void DrawInputBar(InputWindow* inputWindow, int iCursorPos, Messages * msgup, Me
             strUp[i] = GetMessageString(msgup, i);
         posUpX[i] = MarginLeft + inputWidth;
 
-        strWidth = StringWidth(strUp[i], inputWindow->owner->fontset);
+        strWidth = StringWidth(inputWindow->dpy, inputWindow->owner->xftfont, strUp[i]);
 
         posUpY[i] = MarginTop + InputPos - strHeight;
         inputWidth += strWidth;
@@ -210,7 +210,7 @@ void DrawInputBar(InputWindow* inputWindow, int iCursorPos, Messages * msgup, Me
                     strncpy(strTemp, strUp[i], iChar);
                     strTemp[iChar] = '\0';
                     strGBKT = strTemp;
-                    strWidth = StringWidth(strGBKT, inputWindow->owner->fontset);
+                    strWidth = StringWidth(inputWindow->dpy, inputWindow->owner->xftfont, strGBKT);
                     cursor_pos= posUpX[i]
                                 + strWidth + 2;
                 }
@@ -247,14 +247,14 @@ void DrawInputBar(InputWindow* inputWindow, int iCursorPos, Messages * msgup, Me
                 }
             }
             posDownX[i] = MarginLeft + currentX;
-            strWidth = StringWidth(strDown[i], inputWindow->owner->fontset);
+            strWidth = StringWidth(inputWindow->dpy, inputWindow->owner->xftfont, strDown[i]);
             currentX += strWidth;
             posDownY[i] =  MarginTop + OutputPos + outputHeight - strHeight;
         }
         else /* horizontal */
         {
             posDownX[i] = MarginLeft + outputWidth;
-            strWidth = StringWidth(strDown[i], inputWindow->owner->fontset);
+            strWidth = StringWidth(inputWindow->dpy, inputWindow->owner->xftfont, strDown[i]);
             posDownY[i] = MarginTop + OutputPos - strHeight;
             outputWidth += strWidth;
         }
@@ -312,20 +312,16 @@ void DrawInputBar(InputWindow* inputWindow, int iCursorPos, Messages * msgup, Me
 
     for (i = 0; i < GetMessageCount(msgup) ; i++)
     {
-        GC gc = LightUICreateGC(inputWindow->dpy, inputWindow->pixmap, inputWindow->owner->fontColor[GetMessageType(msgup, i)]);
-        OutputString(inputWindow->dpy, inputWindow->pixmap, inputWindow->owner->fontset, strUp[i], posUpX[i], posUpY[i], gc);
+        OutputString(inputWindow->dpy, inputWindow->xftDraw, inputWindow->pixmap, inputWindow->owner->xftfont, strUp[i], posUpX[i], posUpY[i], inputWindow->owner->fontColor[GetMessageType(msgup, i)]);
         if (strUp[i] != GetMessageString(msgup, i))
             free(strUp[i]);
-        XFreeGC(inputWindow->dpy, gc);
     }
 
     for (i = 0; i < GetMessageCount(msgdown) ; i++)
     {
-        GC gc = LightUICreateGC(inputWindow->dpy, inputWindow->pixmap, inputWindow->owner->fontColor[GetMessageType(msgdown, i)]);
-        OutputString(inputWindow->dpy, inputWindow->pixmap, inputWindow->owner->fontset, strDown[i], posDownX[i], posDownY[i], gc);
+        OutputString(inputWindow->dpy, inputWindow->xftDraw, inputWindow->pixmap, inputWindow->owner->xftfont, strDown[i], posDownX[i], posDownY[i], inputWindow->owner->fontColor[GetMessageType(msgdown, i)]);
         if (strDown[i] != GetMessageString(msgdown, i))
             free(strDown[i]);
-        XFreeGC(inputWindow->dpy, gc);
     }
 
     //画光标
@@ -359,11 +355,7 @@ LightUIImage* LoadImage(struct _FcitxLightUI* lightui, const char* name)
             {
                 XpmAttributes   attrib;
 
-                attrib.valuemask = XpmColormap | XpmDepth | XpmCloseness;
-                attrib.colormap = DefaultColormap(lightui->dpy, lightui->iScreen);
-                attrib.depth = DefaultDepth(lightui->dpy, lightui->iScreen);
-                attrib.closeness = 40000;
-                attrib.exactColors = False;
+                attrib.valuemask = 0;
 
                 XpmCreateImageFromData (lightui->dpy, builtInImage[i].data , &xpm, &mask, &attrib);
                 break;
